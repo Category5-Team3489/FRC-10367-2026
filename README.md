@@ -1,9 +1,4 @@
-
-# FRC Robot Code – Littleton Robotics (2021–2026)
-
-This repository contains the command-based robot code for Littleton Robotics. It defines subsystems, commands, and operator controls for both real hardware and simulation, using WPILib and PathPlanner.
-
----
+## FRC 2026 10367 GENERAL DOCS
 
 ## 📦 Subsystems
 
