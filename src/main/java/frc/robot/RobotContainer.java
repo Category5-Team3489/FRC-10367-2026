@@ -99,17 +99,13 @@ public class RobotContainer {
     // Default drive command, normal arcade drive
     drive.setDefaultCommand(
         DriveCommands.arcadeDrive(
-            drive, () -> (-controller.getLeftY() * 0.6), () -> (-controller.getRightX() * 0.8)));
-
-    // Control bindings for superstructure
-    controller.b().whileTrue(superstructure.intklnch());
-    controller
-        .rightTrigger()
-        .whileTrue(
-            DriveCommands.arcadeDrive(
                 drive,
                 () -> (-controller.getLeftY() * controller.getLeftTriggerAxis()),
                 () -> (-controller.getRightX() * controller.getRightTriggerAxis())));
+
+    // Control bindings for superstructure
+    controller.b().whileTrue(superstructure.intklnch());
+    
     controller.leftBumper().whileTrue(superstructure.intake());
     controller.rightBumper().whileTrue(superstructure.launch());
     controller.a().whileTrue(superstructure.eject());
