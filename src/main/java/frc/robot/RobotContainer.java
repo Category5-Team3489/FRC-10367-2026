@@ -99,7 +99,7 @@ public class RobotContainer {
     // Default drive command, normal arcade drive
     drive.setDefaultCommand(
         DriveCommands.arcadeDrive(
-            drive, () -> (-controller.getLeftY() * 0.6), () -> (-controller.getRightX() * 0.6)));
+            drive, () -> (-controller.getLeftY() * 0.6), () -> (-controller.getRightX() * 0.8)));
 
     // Control bindings for superstructure
     controller.b().whileTrue(superstructure.intklnch());
