@@ -103,6 +103,13 @@ public class RobotContainer {
 
     // Control bindings for superstructure
     controller.b().whileTrue(superstructure.intklnch());
+    controller
+        .rightTrigger()
+        .whileTrue(
+            DriveCommands.arcadeDrive(
+                drive,
+                () -> (-controller.getLeftY() * controller.getLeftTriggerAxis()),
+                () -> (-controller.getRightX() * controller.getRightTriggerAxis())));
     controller.leftBumper().whileTrue(superstructure.intake());
     controller.rightBumper().whileTrue(superstructure.launch());
     controller.a().whileTrue(superstructure.eject());
