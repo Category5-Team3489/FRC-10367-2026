@@ -2,13 +2,13 @@
 
 ## 📦 Subsystems
 
-- **Drive**  
-  - Supports TalonFX hardware and simulation.  
-  - Gyro integration via NavX or simulated gyro.  
+- **Drive**
+  - Supports TalonFX hardware and simulation.
+  - Gyro integration via NavX or simulated gyro.
 
-- **Superstructure**  
-  - Handles intake, launching, and ejecting mechanisms.  
-  - Hardware (TalonFX) and simulation implementations available.  
+- **Superstructure**
+  - Handles intake, launching, and ejecting mechanisms.
+  - Hardware (TalonFX) and simulation implementations available.
 
 ---
 
@@ -29,11 +29,11 @@
 
 Autonomous routines are selectable via the **LoggedDashboardChooser**:
 
-- **PathPlanner Auto Chooser** – Runs prebuilt autonomous paths.  
-- **SysId Routines** – For drivetrain characterization:  
-  - Drive Simple Feedforward Characterization  
-  - Quasistatic Forward / Reverse  
-  - Dynamic Forward / Reverse  
+- **PathPlanner Auto Chooser** – Runs prebuilt autonomous paths.
+- **SysId Routines** – For drivetrain characterization:
+  - Drive Simple Feedforward Characterization
+  - Quasistatic Forward / Reverse
+  - Dynamic Forward / Reverse
 
 Additionally, a custom **Launch** command is registered for autonomous use.
 
@@ -43,17 +43,17 @@ Additionally, a custom **Launch** command is registered for autonomous use.
 
 The robot supports three modes via `Constants.currentMode`:
 
-- **REAL** – Uses hardware IO (TalonFX, NavX).  
-- **SIM** – Uses physics simulation IO.  
-- **REPLAY** – Disables IO for log replay.  
+- **REAL** – Uses hardware IO (TalonFX, NavX).
+- **SIM** – Uses physics simulation IO.
+- **REPLAY** – Disables IO for log replay.
 
 ---
 
 ## 📖 Notes
 
-- **Command-based structure**: Subsystems define hardware, commands define actions, and `RobotContainer` wires everything together.  
-- **Button bindings**: Configured in `configureButtonBindings()`.  
-- **Autonomous selection**: Accessible through Shuffleboard/SmartDashboard via `autoChooser`.  
+- **Command-based structure**: Subsystems define hardware, commands define actions, and `RobotContainer` wires everything together.
+- **Button bindings**: Configured in `configureButtonBindings()`.
+- **Autonomous selection**: Accessible through Shuffleboard/SmartDashboard via `autoChooser`.
 
 ---
 
