@@ -16,6 +16,8 @@ import static frc.robot.subsystems.superstructure.SuperstructureConstants.spinUp
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 import org.littletonrobotics.junction.Logger;
 
 public class Superstructure extends SubsystemBase {
@@ -33,13 +35,15 @@ public class Superstructure extends SubsystemBase {
   }
 
   /** Set the rollers to the values for intaking. */
-  public Command intklnch() {
+  public Command failsafeintake() {
     return runEnd(
         () -> {
-          io.setIntakeLauncherVoltage(intakingFeederVoltage);
+          io.setFeederVoltage(-intakingFeederVoltage);
+          io.setIntakeLauncherVoltage(intakingIntakeVoltage);
         },
         () -> {
           io.setIntakeLauncherVoltage(0.0);
+          io.setFeederVoltage(0);
         });
   }
 
@@ -65,6 +69,22 @@ public class Superstructure extends SubsystemBase {
         () -> {
           io.setFeederVoltage(0.0);
           io.setIntakeLauncherVoltage(0.0);
+        });
+  }
+
+  public Command contlaunch(DoubleSupplier x, BooleanSupplier y) {
+    return runEnd(
+        () -> {
+          io.setIntakeLauncherVoltage(x.getAsDouble());
+          if (y.getAsBoolean() == true) {
+            io.setFeederVoltage(launchingFeederVoltage);
+          } else {
+            io.setFeederVoltage(0);
+          }
+        },
+        () -> {
+          io.setIntakeLauncherVoltage(0.0);
+          io.setFeederVoltage(0);
         });
   }
 

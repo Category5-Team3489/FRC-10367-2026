@@ -40,7 +40,8 @@ public class RobotContainer {
   private final Superstructure superstructure;
 
   // Controller
-  private final CommandXboxController controller = new CommandXboxController(0);
+  private final CommandXboxController drivecontroller = new CommandXboxController(0);
+  private final CommandXboxController manicontroller = new CommandXboxController(1);
 
   // Dashboard inputs
   private final LoggedDashboardChooser<Command> autoChooser;
@@ -99,16 +100,20 @@ public class RobotContainer {
     // Default drive command, normal arcade drive
     drive.setDefaultCommand(
         DriveCommands.arcadeDrive(
-                drive,
-                () -> (-controller.getLeftY() * controller.getLeftTriggerAxis()),
-                () -> (-controller.getRightX() * controller.getRightTriggerAxis())));
+            drive,
+            () -> (-drivecontroller.getLeftY() * 0.95),
+            () -> (-drivecontroller.getRightX() * 0.95)));
 
     // Control bindings for superstructure
-    controller.b().whileTrue(superstructure.intklnch());
-    
-    controller.leftBumper().whileTrue(superstructure.intake());
-    controller.rightBumper().whileTrue(superstructure.launch());
-    controller.a().whileTrue(superstructure.eject());
+    manicontroller.b().whileTrue(superstructure.failsafeintake());
+    manicontroller.leftBumper().whileTrue(superstructure.intake());
+    manicontroller.a().whileTrue(superstructure.eject());
+    manicontroller
+        .leftTrigger()
+        .whileTrue(
+            superstructure.contlaunch(
+                () -> manicontroller.getLeftTriggerAxis() * (-12.6), manicontroller.x()));
+    manicontroller.rightBumper().whileTrue(superstructure.launch());
   }
 
   /**
