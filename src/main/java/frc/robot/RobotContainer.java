@@ -69,7 +69,8 @@ public class RobotContainer {
     }
 
     // Set up auto routines
-    NamedCommands.registerCommand("Launch", superstructure.launch().withTimeout(6.0));
+    NamedCommands.registerCommand("Launch", superstructure.launch().withTimeout(10.0));
+    NamedCommands.registerCommand("Intake", superstructure.intake().withTimeout(10.0));
     autoChooser = new LoggedDashboardChooser<>("Auto Choices", AutoBuilder.buildAutoChooser());
 
     // Set up SysId routines
